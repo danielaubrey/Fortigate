@@ -1,0 +1,1 @@
+robocopy [SOURCE] [DEST] /E /nfl /XO /np /mt:16 /ndl
