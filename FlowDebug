@@ -1,0 +1,11 @@
+diagnose debug disable 
+diagnose debug flow trace stop 
+diagnose debug flow filter clear 
+diagnose debug reset 
+diagnose debug flow filter addr [IP ADDRESS]
+diagnose debug flow filter port [PORT]
+diagnose debug flow show console enable
+diagnose debug flow show function-name enable
+diagnose debug console timestamp enable
+diagnose debug flow trace start 1000
+diagnose debug enable
