@@ -1,5 +1,25 @@
 #!/usr/bin/perl
+
+
+# Syntax: Policy2CSV.pl rules.txt
 #
+#  <rules.txt> should be in the following format:
+# config firewall policy
+#      edit 1
+#          set srcintf "internal"
+#          set dstintf "wan1"
+#              set srcaddr "all"
+#              set dstaddr "all"
+#          set action accept
+#          set schedule "always"
+#              set service "ANY"
+#          set logtraffic-app disable
+#          set webcache enable
+#          set nat enable
+#      next
+# end
+
+
 
 my $output = "policies-out.csv";
 
