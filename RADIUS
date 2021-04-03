@@ -30,7 +30,7 @@ Supported Protocols: RADIUS
 Create RADIUS Response
 Policy -> Policy Elements -> Results -> Authorization -> Authorization Profiles
 Click on "Add"
-Name: Device: Foritgate Permit
+Name: Device:Foritgate Permit
 Access Type: ACCESS_ACCEPT
 Network Device Profile: FortiGate
 Advanced Attribute Settings
@@ -39,26 +39,62 @@ Fortinet:Foritnet-Access-Profile = super_admin   ---- This is a profile defined 
 
 
 
-Creat a Device Type " xxxxx Firewalls*
+Create a Device Type "xxxxx Firewalls"
+Create a Network Device for the Foritgate
+
+
 
 Update the Authentication Policy
 Policy -> Policy Sets -> Default -> Authentication Policy
 Update NETWORK-ADMIN-R-S Policy Set to include the "xxxxx Firewalls" group
 
 Update the Authorization Policy
-
-
-
-
-
-
-
+Update policy to match:
+ - LDAP directory contain Firewall Admins
+ - Device Type = "xxxxx Firewalls"
+Set Result Profile to "Device:Foritgate Permit"
 
 
 
 
 
 Fortigate - User & Devices - RADIUS Servers
+"Create New"
+Name: Hostname
+Authentication Method: Default
+IP Address: x.x.x.x
+Secret: ******
+* At this stage you should be able to successfully run the two Connectivity options
 
-IP Address a
+Create a User Group on the ForitGate
+User & Device -> User Group
+Click on "Create New"
+Provide the Name of the Group speciified in the RADIUS attributes (ie, FIREWALL-WRITE)
+Type:Firewall
+Click on "OK"
+
+Create and Administrator Profile
+
+
+Create Admin User Account on the FortiGate
+System -> Administrators
+Click on "Create New"
+Username: [admin_account]  -- Note:Dont specify the domain name
+Type: Match a user on a remote server group
+Administrator Profile: no_access
+Remote User Group: Group speciified in the RADIUS attributes (ie, FIREWALL-WRITE)
+
+Configure the foritgate to override the definded no_access profile based on the RADIUS response 
+
+Access the foritgate CLI and enter the following:
+#
+# config system admin
+     edit Radius_Admins
+     set accprofile-override enable
+end
+#
+
+
+
+
 
