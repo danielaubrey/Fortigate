@@ -1,0 +1,64 @@
+Step 1 - Update ISE with Fortigate RADISU attributes 
+Policy -> Policy Elements -> Dictionaries
+
+Drill down to System -> RADIUS -> RADIUS Venddors (Make sure to click on and select RADIUS Vendors)
+In the main Window, select "Import"
+
+Choose a local txt file that contains the following:
+
+#
+# Fortinet VSAs
+#
+VENDOR Fortinet 12356
+#
+BEGIN-VENDOR Fortinet
+ATTRIBUTE Fortinet-Group-Name        1 string
+ATTRIBUTE Fortinet-Client-IP-Address 2 ipaddr
+ATTRIBUTE Fortinet-Vdom-Name         3 string
+ATTRIBUTE Fortinet-Access-Profile    6 string
+#
+# Integer Translations
+#
+END-VENDOR Fortinet
+#
+
+Create Device Profile
+Administration -> Network Resources -> Network Device Profiles -> Click Add
+Name: ForitGate
+Supported Protocols: RADIUS
+
+Create RADIUS Response
+Policy -> Policy Elements -> Results -> Authorization -> Authorization Profiles
+Click on "Add"
+Name: Device: Foritgate Permit
+Access Type: ACCESS_ACCEPT
+Network Device Profile: FortiGate
+Advanced Attribute Settings
+Fortinet:Foritnet-Group-Name = FIREWALL-WRITE    ---- This is a group that will be created on the ForitGate
+Fortinet:Foritnet-Access-Profile = super_admin   ---- This is a profile defined on the FortiGate
+
+
+
+Creat a Device Type " xxxxx Firewalls*
+
+Update the Authentication Policy
+Policy -> Policy Sets -> Default -> Authentication Policy
+Update NETWORK-ADMIN-R-S Policy Set to include the "xxxxx Firewalls" group
+
+Update the Authorization Policy
+
+
+
+
+
+
+
+
+
+
+
+
+Fortigate - User & Devices - RADIUS Servers
+
+IP Address a
+
