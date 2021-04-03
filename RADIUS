@@ -1,4 +1,4 @@
-Step 1 - Update ISE with Fortigate RADISU attributes 
+Step 1 - Update ISE with Fortigate RADIUS attributes 
 Policy -> Policy Elements -> Dictionaries
 
 Drill down to System -> RADIUS -> RADIUS Venddors (Make sure to click on and select RADIUS Vendors)
