@@ -1,0 +1,4 @@
+get vpn ssl monitor
+diag vpn ssl list
+diag vpn ssl client peer list
+diagnose vpn ssl statistics all
